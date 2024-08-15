@@ -11,13 +11,14 @@ int main(void)
     InitWindow(WINW, WINH, TITLE);
     SetTargetFPS(30);
 
+    Font UIFont = LoadFont("assets/fonts/AzeretMono-Medium.ttf");
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
         ClearBackground(BGCOLOR);
-        RenderPanel();
-        DrawTextEx(GetMyFont(), "Hello world", (Vector2){PADDING + 4, PADDING + 4}, 16, 0, LIGHTGRAY);
+        RenderPanel(UIFont);
 
         EndDrawing();
     }

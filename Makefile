@@ -9,8 +9,8 @@ NUKLEAR_SRC = https://github.com/Immediate-Mode-UI/Nuklear/raw/$(NUKLEAR_TAG)/nu
 
 
 CC = clang
-CFLAGS = -Wall -Wextra -pedantic -I$(RAYLIB)/include -Iextern
-LDFLAGS = -L$(RAYLIB)/lib -lraylib -lm -lGL
+CFLAGS = -Wall -Wextra -pedantic -I$(RAYLIB)/include
+LDFLAGS = -L$(RAYLIB)/lib -l:libraylib.a -lm -lGL
 
 .PHONY: clean purge
 
@@ -23,8 +23,7 @@ deps:
 	mkdir -p cache
 	wget -q -P cache $(RAYLIB_SRC) $(NUKLEAR_SRC)
 	tar -xf cache/$(RAYLIB).tar.gz
-	mkdir nuklear
-	cp cache/nuklear.h nuklear
+	cp cache/nuklear.h .
 
 run:
 	./calc
@@ -34,4 +33,4 @@ clean:
 	rm -rf cache
 
 purge: clean
-	rm -rf raylib-* nuklear
+	rm -rf raylib-* nuklear.h
