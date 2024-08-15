@@ -11,15 +11,13 @@ int main(void)
     InitWindow(WINW, WINH, TITLE);
     SetTargetFPS(30);
 
-    Font MainTTF = GetMyFont();
-
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
         ClearBackground(BGCOLOR);
         RenderPanel();
-        DrawTextEx(MainTTF, "Hello world", (Vector2){PADDING + 4, PADDING + 4}, 16, 0, LIGHTGRAY);
+        DrawTextEx(GetMyFont(), "Hello world", (Vector2){PADDING + 4, PADDING + 4}, 16, 0, LIGHTGRAY);
 
         EndDrawing();
     }
