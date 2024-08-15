@@ -1,4 +1,7 @@
 .DS_Store
 *:Zone.Identifier
 
-out/
+/calc
+cache/
+raylib-*
+raygui

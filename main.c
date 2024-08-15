@@ -8,7 +8,7 @@ int main(void)
 {
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(WINW, WINH, TITLE);
-    SetTargetFPS(60);
+    SetTargetFPS(30);
 
     Font MainTTF = GetMyFont();
 
