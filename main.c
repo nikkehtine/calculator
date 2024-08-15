@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <raylib.h>
+#include "raylib.h"
+
 #include "math.h"
 #include "ui.h"
 #include "window_attr.h"

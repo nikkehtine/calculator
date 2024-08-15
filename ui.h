@@ -1,5 +1,7 @@
+#pragma once
+
 #include <stdio.h>
-#include <raylib.h>
+#include "raylib.h"
 #include "window_attr.h"
 
 #define PADDING 8

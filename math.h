@@ -1,5 +1,4 @@
-#ifndef CALC_MATH
-#define CALC_MATH
+#pragma once
 
 double add(double x, double y)
 {
@@ -9,5 +8,3 @@ double sub(double x, double y)
 {
     return x - y;
 }
-
-#endif
