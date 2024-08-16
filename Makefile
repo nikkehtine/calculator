@@ -1,36 +1,26 @@
-# Raylib
-RAYLIB_TARGET = linux_amd64
-RAYLIB_TAG = 5.0
-RAYLIB = raylib-$(RAYLIB_TAG)_$(RAYLIB_TARGET)
-RAYLIB_SRC = https://github.com/raysan5/raylib/releases/download/$(RAYLIB_TAG)/$(RAYLIB).tar.gz
-
-NUKLEAR_TAG = 4.12.0
-NUKLEAR_SRC = https://github.com/Immediate-Mode-UI/Nuklear/raw/$(NUKLEAR_TAG)/nuklear.h
-
-
 CC = clang
-CFLAGS = -Wall -Wextra -pedantic -I$(RAYLIB)/include
-LDFLAGS = -L$(RAYLIB)/lib -l:libraylib.a -lm -lGL
+CFLAGS = -Wall -Wextra -pedantic -Iextern
 
-.PHONY: clean purge
+CFLAGS_linux = -lm -lraylib
+CFLAGS_macos = $(shell pkg-config --libs --cflags raylib)
+CFLAGS_windows = -I"C:/Program Files/Raylib/include" -L"C:/Program Files/Raylib/lib"
+
+TARGET ?= linux
+ifeq ($(TARGET), linux)
+	CFLAGS += $(CFLAGS_linux)
+else ifeq ($(TARGET), macos)
+	CFLAGS += $(CFLAGS_macos)
+else ifeq ($(TARGET), windows)
+	CFLAGS += $(CFLAGS_windows)
+endif
+
+
+.PHONY: clean
 
 all: build
 
 build: main.c
-	$(CC) $(CFLAGS) main.c -o calc $(LDFLAGS)
-
-deps:
-	mkdir -p cache
-	wget -q -P cache $(RAYLIB_SRC) $(NUKLEAR_SRC)
-	tar -xf cache/$(RAYLIB).tar.gz
-	cp cache/nuklear.h .
-
-run:
-	./calc
+	$(CC) $(CFLAGS) -o calc main.c
 
 clean:
 	rm -f calc
-	rm -rf cache
-
-purge: clean
-	rm -rf raylib-* nuklear.h

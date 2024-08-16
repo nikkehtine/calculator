@@ -2,6 +2,3 @@
 *:Zone.Identifier
 
 /calc
-cache/
-raylib-*
-nuklear.h
